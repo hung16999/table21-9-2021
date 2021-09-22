@@ -1,7 +1,7 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 
-.form-order-by {
-  width: 400px;
+.form-orderby {
+  width: 200px;
   display: flex;
   justify-content: flex-start;
 }
