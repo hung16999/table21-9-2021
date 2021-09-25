@@ -1,13 +1,13 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 import { User } from "../App";
+import { headingTable } from "../constants/heading";
 
 interface Props {
-  users: User[];
-  headingTable: { key: string; name: string }[];
+  users: User[] | undefined;
 }
 
-export const MainTable = ({ users, headingTable }: Props) => {
+export const MainTable = ({ users }: Props) => {
   const parseDate = (dateString: string): string => {
     const date = dateString.split("T")[0].split("-");
     const [year, month, day] = date;
@@ -33,18 +33,22 @@ export const MainTable = ({ users, headingTable }: Props) => {
       </thead>
 
       <tbody>
-        {users.map((user) => (
-          <tr key={user.id}>
-            <td>{user.id}</td>
-            <td>{user.firstName}</td>
-            <td>{user.lastName}</td>
-            <td>{user.email}</td>
-            <td>{user.gender}</td>
-            <td>{parseDate(user.birthday)}</td>
-            <td>{user.salary}</td>
-            <td>{parsePhone(user.phone)}</td>
-          </tr>
-        ))}
+        {users ? (
+          users.map((user) => (
+            <tr key={user.id}>
+              <td>{user.id}</td>
+              <td>{user.firstName}</td>
+              <td>{user.lastName}</td>
+              <td>{user.email}</td>
+              <td>{user.gender}</td>
+              <td>{parseDate(user.birthday)}</td>
+              <td>{user.salary}</td>
+              <td>{parsePhone(user.phone)}</td>
+            </tr>
+          ))
+        ) : (
+          <tr></tr>
+        )}
       </tbody>
     </Table>
   );
